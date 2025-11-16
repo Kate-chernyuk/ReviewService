@@ -1,4 +1,3 @@
-// config/database.go
 package config
 
 import (
@@ -103,13 +102,11 @@ func InitDB() (*gorm.DB, error) {
 	return db, nil
 }
 
-// Вспомогательная функция для проверки ошибки "база уже существует"
 func isDatabaseExistsError(err error) bool {
 	if err == nil {
 		return false
 	}
 	errorStr := err.Error()
-	// Проверяем различные варианты ошибки "база уже существует"
 	return contains(errorStr, "already exists") ||
 		contains(errorStr, "уже существует") ||
 		contains(errorStr, "SQLSTATE 42P04")
